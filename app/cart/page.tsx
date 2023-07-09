@@ -8,19 +8,7 @@ import ArrowUp from "@/app/icons/arrowUp";
 import ArrowDown from "@/app/icons/arrowDown";
 import Link from "next/link";
 
-type Item = {
-  name: string;
-  description: string;
-  picture: string;
-  quantity: number;
-  checked: boolean;
-};
-
-type CartProps = {
-  items: Item[];
-};
-
-const Cart: React.FC<CartProps> = () => {
+const Cart: React.FC = () => {
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
