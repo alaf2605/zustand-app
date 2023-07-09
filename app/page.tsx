@@ -1,93 +1,90 @@
 "use client";
-import styles from './page.module.css'
-import {useState} from "react";
-import images from './images';
+import styles from "./page.module.css";
+import { useEffect, useState } from "react";
+import images from "./images";
 import Image from "next/image";
 
+import { useProductsStore } from "../context/items";
+import { useCartStore } from "@/context/shoppingCart";
+import HeartIcon from "@/app/icons/heartIcon";
+import FavoriteIcon from "@/app/icons/favouritesIcon";
 
 export default function Home() {
+  const [domLoaded, setDomLoaded] = useState(false);
 
-    const [filter, setFilter] = useState('all');
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
+  const totalItems = useCartStore((state) => state.totalItems);
 
-    const items = [
-        {
-            name: 'Кровать TATRAN',
-            description: 'Основание из полированной нержавеющей стали, придает оригинальный парящий эффект.',
-            pictureIndex: 0,
-        },
-        {
-            name: 'Кресло VILORA',
-            description: 'Мягкое и уютное, аккуратное и стильное. Упругие подушки сиденья и приятная на ощупь ткань. ',
-            pictureIndex: 1,
-        },
-        {
-            name: 'Стол MENU',
-            description: 'Европейский дуб - отличается особой прочностью и стабильностью.',
-            pictureIndex: 2,
-        },
-        {
-            name: 'Диван ASKESTA',
-            description: 'Благодаря защелкивающемуся механизму диван легко раскладывается в комфортную кровать',
-            pictureIndex: 3,
-        },
-        {
-            name: 'Кресло LUNAR',
-            description: 'Прекрасно переносит солнечные лучи, перепады влажности и любые осадки',
-            pictureIndex: 4,
-        },
-        {
-            name: 'Шкаф Nastan',
-            description: 'Мебель может быть оснащена разнообразными системами подсветки.',
-            pictureIndex: 5,
-        },
-        // Add more items here...
-    ];
+  const [filter, setFilter] = useState("all");
 
+  const { products, filterByPrice } = useProductsStore();
 
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
 
+    setFilter(selectedValue);
 
-    const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setFilter(event.target.value);
-    };
+    // Do something based on the selected value
+    switch (selectedValue) {
+      case "category1":
+        filterByPrice("desc");
+        break;
+      case "category2":
+        filterByPrice("asc");
+        break;
+      default:
+        break;
+    }
+  };
 
+  const addToCart = useCartStore((state) => state.addToCart);
 
-    return (
-        <div>
-            <header className={styles.header}>
-                <nav>
-                    <ul className={styles.navLinks}>
-                        <li className={styles.navLink}>
-                            <a href="/">Catalog</a>
-                        </li>
-                        <li className={styles.navLink}>
-                            <a href="/cart">Cart</a>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-            <select className={styles.filter} value={filter} onChange={handleFilterChange}>
-                <option value="all">All</option>
-                <option value="category1">Category 1</option>
-                <option value="category2">Category 2</option>
-                <option value="category3">Category 3</option>
-            </select>
+  if (!domLoaded) return;
 
-            <div className={styles.catalog}>
-                {items.map((item, index) => (
-                    <div className={styles.item} key={index}>
-                        <div className={styles.pictureContainer}>
-                            <Image className={styles.picture} src={images[item.pictureIndex]} alt={item.name} />
-                            <span className={styles.cartIcon}>&#128722;</span> {/* Index icon */}
-                        </div>
-                        <h2 className={styles.name}>{item.name}</h2>
-                        <p className={styles.description}>{item.description}</p>
-                    </div>
-                ))}
+  return (
+    <div>
+      <select
+        className={styles.filter}
+        value={filter}
+        onChange={handleFilterChange}
+      >
+        <option value="category1">Порядок: Сначала дорогие</option>
+        <option value="category2">Порядок: Сначала дешевые</option>
+      </select>
+      <div className={styles.catalog}>
+        {products.map((item, index) => (
+          <div className={styles.item} key={index}>
+            <div
+              className={styles.pictureContainer}
+              style={{ position: "relative" }}
+            >
+              <Image
+                className={styles.picture}
+                src={images[item.pictureIndex]}
+                alt={item.name}
+              />
+              <span
+                className={styles.cartIcon}
+                style={{ position: "absolute", top: "10px", right: "10px" }}
+              >
+                <FavoriteIcon />
+              </span>
+              <span
+                className={styles.heartIcon}
+                style={{ position: "absolute", top: "10px", right: "50px" }}
+                onClick={() => addToCart(item)}
+              >
+                <HeartIcon isChecked={item.checked} />
+              </span>
             </div>
-        </div>
+            <h2 className={styles.name}>{item.name}</h2>
+            <p className={styles.description}>{item.description}</p>
+            <p className={styles.price}>{item.price} руб</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
-};
-
-
-
-
+}

@@ -65,6 +65,9 @@
 
 .navLinks {
   display: flex;
+  align-items: center;
+  position: relative;
+  left: 70%;
 }
 
 .link {
@@ -75,8 +78,10 @@
 }
 
 .header {
-  height: 77px;
-  background-color: #777777;
+  display: flex;
+  height: 100px;
+  background-color: #CCC;
+  color: #f7f6f6;
 }
 
 .headerTitle {
@@ -85,4 +90,5 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  margin-left: 10px;
 }

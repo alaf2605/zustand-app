@@ -9,19 +9,18 @@
 
 .details {
   margin-left: 30px;
-  width: 300px;
+  width: 360px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 1;
 }
 
 .name {
   font-size: 24px;
   font-weight: 500;
   line-height: 29px;
-  letter-spacing: 0px;
   text-align: left;
+  margin-top: -5px;
 }
 
 .description {
@@ -29,8 +28,8 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  letter-spacing: 0em;
   text-align: left;
+  margin-top: -4px;
 }
 
 .quantity {
@@ -96,19 +95,19 @@
 .rightContainer {
   height: 558px;
   width: 379px;
-  position: fixed;
-  top: 40%;
+  position: absolute;
+  top: 55%;
   right: 68px;
   transform: translateY(-50%);
   /* border-left: 1px solid #ddd; */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: space-between;
   border: 1px solid gray;
   border-radius: 20px;
   padding: 40px;
   background-color: #f7f6f6;
+  align-items: center;
 }
 
 .form {
@@ -134,10 +133,10 @@
 }
 
 .item {
-  width: 700px;
+  width: 740px;
   display: flex;
   margin-left: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 50px
 }
 
 .orderDetails {
@@ -155,11 +154,16 @@
 }
 
 .title {
-  margin-left: 100px;
+  margin-left: 150px;
+}
+.titleQt {
+  position: relative;
+  left: 38%;
 }
 
 .titleContainer {
-  height: 100px;
+  height: 40px;
+  margin-top: 20px;
 }
 
 .buttonContainer {
@@ -168,4 +172,22 @@
 
 .cart {
   height: 500px;
+}
+
+.removeItem {
+  cursor: pointer;
+  color: #000;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 210%;
+  text-decoration-line: underline;
+}
+
+.emptyContainer {
+    display: flex;
+    font-size: 25px;
+    /* width: 400px; */
+    margin-left: 100px;
 }
