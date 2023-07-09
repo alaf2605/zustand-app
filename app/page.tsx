@@ -1,95 +1,93 @@
-import Image from 'next/image'
+"use client";
 import styles from './page.module.css'
+import {useState} from "react";
+import images from './images';
+import Image from "next/image";
+
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
+
+    const [filter, setFilter] = useState('all');
+
+    const items = [
+        {
+            name: 'Кровать TATRAN',
+            description: 'Основание из полированной нержавеющей стали, придает оригинальный парящий эффект.',
+            pictureIndex: 0,
+        },
+        {
+            name: 'Кресло VILORA',
+            description: 'Мягкое и уютное, аккуратное и стильное. Упругие подушки сиденья и приятная на ощупь ткань. ',
+            pictureIndex: 1,
+        },
+        {
+            name: 'Стол MENU',
+            description: 'Европейский дуб - отличается особой прочностью и стабильностью.',
+            pictureIndex: 2,
+        },
+        {
+            name: 'Диван ASKESTA',
+            description: 'Благодаря защелкивающемуся механизму диван легко раскладывается в комфортную кровать',
+            pictureIndex: 3,
+        },
+        {
+            name: 'Кресло LUNAR',
+            description: 'Прекрасно переносит солнечные лучи, перепады влажности и любые осадки',
+            pictureIndex: 4,
+        },
+        {
+            name: 'Шкаф Nastan',
+            description: 'Мебель может быть оснащена разнообразными системами подсветки.',
+            pictureIndex: 5,
+        },
+        // Add more items here...
+    ];
+
+
+
+
+    const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setFilter(event.target.value);
+    };
+
+
+    return (
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <header className={styles.header}>
+                <nav>
+                    <ul className={styles.navLinks}>
+                        <li className={styles.navLink}>
+                            <a href="/">Catalog</a>
+                        </li>
+                        <li className={styles.navLink}>
+                            <a href="/cart">Cart</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <select className={styles.filter} value={filter} onChange={handleFilterChange}>
+                <option value="all">All</option>
+                <option value="category1">Category 1</option>
+                <option value="category2">Category 2</option>
+                <option value="category3">Category 3</option>
+            </select>
+
+            <div className={styles.catalog}>
+                {items.map((item, index) => (
+                    <div className={styles.item} key={index}>
+                        <div className={styles.pictureContainer}>
+                            <Image className={styles.picture} src={images[item.pictureIndex]} alt={item.name} />
+                            <span className={styles.cartIcon}>&#128722;</span> {/* Index icon */}
+                        </div>
+                        <h2 className={styles.name}>{item.name}</h2>
+                        <p className={styles.description}>{item.description}</p>
+                    </div>
+                ))}
+            </div>
         </div>
-      </div>
+  );
+};
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}

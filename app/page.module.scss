@@ -1,0 +1,88 @@
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.picture {
+  width: 379px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.name {
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  text-align: left;
+}
+
+.description {
+  margin-top: 5px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  color: #888888;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.filter {
+  margin-bottom: 20px;
+  align-items: flex-end;
+  margin-top: 20px;
+  position: relative;
+  left: 80%;
+}
+
+.heartIcon {
+  color: red;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cartIcon {
+  color: blue;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navLinks {
+  display: flex;
+}
+
+.link {
+  margin-right: 10px;
+  font-size: 14px;
+  color: white;
+  justify-content: flex-end;
+}
+
+.header {
+  height: 77px;
+  background-color: #777777;
+}
+
+.headerTitle {
+  color: white;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
