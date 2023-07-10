@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useProductsStore } from "@/context/items";
 import { useCartStore } from "@/context/shoppingCart";
 import HeartIcon from "@/app/icons/heartIcon";
-import FavoriteIcon from "@/app/icons/favouritesIcon";
+import CartIcon from "@/app/icons/favouritesIcon";
 
 export default function Home() {
   const [domLoaded, setDomLoaded] = useState(false);
@@ -67,13 +67,13 @@ export default function Home() {
               <span
                 className={styles.cartIcon}
                 style={{ position: "absolute", top: "10px", right: "10px" }}
+                onClick={() => addToCart(item)}
               >
-                <FavoriteIcon />
+                <CartIcon />
               </span>
               <span
                 className={styles.heartIcon}
                 style={{ position: "absolute", top: "10px", right: "50px" }}
-                onClick={() => addToCart(item)}
               >
                 <HeartIcon isChecked={item.checked} />
               </span>
