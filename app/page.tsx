@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import images from "./images";
 import Image from "next/image";
 
-import { useProductsStore } from "../context/items";
+import { useProductsStore } from "@/context/items";
 import { useCartStore } from "@/context/shoppingCart";
 import HeartIcon from "@/app/icons/heartIcon";
 import FavoriteIcon from "@/app/icons/favouritesIcon";
@@ -15,7 +15,6 @@ export default function Home() {
   useEffect(() => {
     setDomLoaded(true);
   }, []);
-  const totalItems = useCartStore((state) => state.totalItems);
 
   const [filter, setFilter] = useState("all");
 

@@ -7,6 +7,7 @@ import { useCartStore } from "@/context/shoppingCart";
 import ArrowUp from "@/app/icons/arrowUp";
 import ArrowDown from "@/app/icons/arrowDown";
 import Link from "next/link";
+import {Counter} from "@/components/counter";
 
 const Cart: React.FC = () => {
   const [domLoaded, setDomLoaded] = useState(false);
@@ -33,7 +34,9 @@ const Cart: React.FC = () => {
           интересного &#128525;
         </p>
       ) : (
-        cart.map((item, index) => (
+
+          <div>
+            {cart.map((item, index) => (
           <div key={index}>
             <div className={styles.titleContainer}>
               <span className={styles.title}>Товар</span>
@@ -60,26 +63,24 @@ const Cart: React.FC = () => {
                 <div className={styles.quantity}>
                   <span>{item.quantity}</span>
                   <div className={styles.quantityContainer}>
-                    <button
-                      className={styles.increment}
-                      onClick={() => addToCart(item)}
-                      disabled={item.quantity === 1}
-                    >
-                      <ArrowUp />
-                    </button>
-                    <button
-                      className={styles.decrement}
-                      onClick={() => removeOneItem(item)}
-                      disabled={item.quantity === 1}
-                    >
-                      <ArrowDown />
-                    </button>
+                  <Counter  max={10} item={item} type='increment' />
+                    <Counter  max={10} item={item} type='decrement' />
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
-        ))
+        ))}
+
+            <div className={styles.buttonsContainer}>
+              <button className={styles.buttonClearCart}> Очистить корзину</button>
+              <Link href="/">
+                <button className={styles.buttonContinueShopping}> Продолжить покупки</button>
+              </Link>
+            </div>
+
+          </div>
       )}
 
       <div className={styles.rightContainer}>

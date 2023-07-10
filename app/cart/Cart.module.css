@@ -191,3 +191,33 @@
     /* width: 400px; */
     margin-left: 100px;
 }
+
+
+
+.buttonsContainer {
+  margin-left: 100px;
+}
+
+
+.buttonClearCart {
+  display: inline-flex;
+  padding: 10px 34px 10px 33px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  border: 1px solid #000;
+  background-color: white;
+  color: black;
+  margin-right: 10px;
+}
+
+.buttonContinueShopping {
+  display: inline-flex;
+  padding: 10px 34px 10px 33px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  border: 1px solid #000;
+  background-color: black;
+  color: white;
+}
