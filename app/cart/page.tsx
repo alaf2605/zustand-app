@@ -63,8 +63,8 @@ const Cart: React.FC = () => {
                 <div className={styles.quantity}>
                   <span>{item.quantity}</span>
                   <div className={styles.quantityContainer}>
-                  <Counter  max={10} item={item} type='increment' />
-                    <Counter  max={10} item={item} type='decrement' />
+                  <Counter  item={item} type='increment' />
+                    <Counter item={item} type='decrement' />
                   </div>
                 </div>
               </div>

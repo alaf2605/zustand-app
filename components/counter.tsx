@@ -6,11 +6,10 @@ import {useCartStore} from "@/context/shoppingCart";
 
 
 type PropsType = {
-    max: number,
     type: 'increment' | 'decrement'
     item : any,
 }
-export const Counter: React.FC<PropsType>= ({max, type, item}) => {
+export const Counter: React.FC<PropsType>= ({ type, item}) => {
 
     const { addToCart, removeOneItem} =
         useCartStore();
@@ -20,7 +19,6 @@ export const Counter: React.FC<PropsType>= ({max, type, item}) => {
             {type === 'increment' ? (
                 <button
                     className={styles.increment}
-                    disabled={item.quantity === max}
                     onClick={() => addToCart(item)}
                 >
                     <ArrowUp />
@@ -28,7 +26,6 @@ export const Counter: React.FC<PropsType>= ({max, type, item}) => {
             ) : (
                 <button
                     className={styles.decrement}
-                    disabled={item.quantity === max}
                     onClick={() => removeOneItem(item)}
                 >
                     <ArrowDown />

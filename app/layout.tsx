@@ -18,10 +18,10 @@ export default function RootLayout({
           <nav className={styles.navLinks}>
             <ul>
               <a className={styles.link} href="/">
-                Catalog
+             Каталог
               </a>
               <a className={styles.link} href="/cart">
-                Cart
+                Корзина
               </a>
             </ul>
           </nav>
