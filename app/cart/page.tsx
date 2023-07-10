@@ -74,7 +74,7 @@ const Cart: React.FC = () => {
         ))}
 
             <div className={styles.buttonsContainer}>
-              <button className={styles.buttonClearCart} onClick={() => clearCart}> Очистить корзину</button>
+              <button className={styles.buttonClearCart} onClick={() => clearCart()}> Очистить корзину</button>
               <Link href="/">
                 <button className={styles.buttonContinueShopping}> Продолжить покупки</button>
               </Link>
